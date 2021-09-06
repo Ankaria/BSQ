@@ -1,114 +1,28 @@
-// Вставляю сюда все файлы из примера решения и пишу пояснения, если что непонятно спрашивай
-// Первым делом он пишет 
-
-#ifndef HEADERS_H// если этот файл еще не запускался
-# define HEADERS_H// запустить этот файл
-
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-
-# define BUF_FIRST 5
-# define TRUE 1
-# define FALSE 0
-
-typedef struct		s_list
-{
-	char				data;
-	struct s_list		*next;
-}					t_list;
-
-char				g_empty;
-char				g_obstacle;
-char				g_filled;
-int					g_rows;
-int					g_col;
-int					g_maxsize;
-int					g_maxposition;
-
-int					is_valid_rows(char *str);
-char				*insert_square(char *str);
-int					is_valid_first_line(char *str, int size);
-char				*ft_import_file(char *file);
-char				*ft_import_stdin(void);
-int					ft_strcmp(char *s1, char *s2);
-void				ft_putchar(char c);
-void				ft_putstr(char *str);
-void				ft_putnbr(int nb);
-int					is_number(char c);
-void				solve_grid(char *str);
-char				*ft_concat_list(t_list *list, int len);
-void				ft_push_list(t_list **node, char c);
-t_list				*ft_create_node(char c);
-#endif
-
-#include "headers.h"//чтобы работали функции
-
-int		ft_import_first_line(int fd)//создаем ф-ю которая принимает инт и выдает инт в переменной fd
-{
-	t_list	*list;//
-	char	buf;//
-	int		str_size;//
-
-	list = NULL;//
-	str_size = 0;//
-	while (read(fd, &buf, 1) > 0)//
-	{
-		str_size++;
-		ft_push_list(&list, buf);
-		if (buf == '\n')//
-			break ;//
-	}
-	if (is_valid_first_line(ft_concat_list(list, str_size), str_size))//
-		return (1);
-	return (0);//
-}
-
-char	*ft_import_stdin(void)//
-{
-	t_list	*list;
-	char	buf;
-	int		str_size;//
-
-	if (ft_import_first_line(0))//
-	{
-		list = NULL;//
-		str_size = 0;
-		while (read(0, &buf, 1) > 0)//
-		{
-			if (buf != g_empty && buf != g_obstacle && buf != '\n')//
-				return (NULL);//
-			ft_push_list(&list, buf);//
-			str_size++;//
-		}
-		return (ft_concat_list(list, str_size));//
-	}
-	return (NULL);//
-}
-
-char	*ft_import_file(char *file)//
-{
-	t_list	*list;
-	char	buf;
-	int		str_size;
-	int		fd;//
-
-	fd = open(file, O_RDONLY);//
-	if (ft_import_first_line(fd))//
-	{
-		list = NULL;
-		str_size = 0;
-		while (read(fd, &buf, 1) > 0)//
-		{
-			if (buf != g_empty && buf != g_obstacle && buf != '\n')//
-				return (NULL);
-			ft_push_list(&list, buf);//
-			str_size++;
-		}
-		close(fd);//
-		return (ft_concat_list(list, str_size));//
-	}
-	return (NULL);
-}
+//Пишем пока все тут, насколько возможно с пояснениями
+//Сначала давай определим порядок действий и способ выполнения задачи
+//
+//1)Проверяем, если ли файл. Если файла нет, читаем ввод с клавиатуры, создаем файл для решения и вносим данные туда. далее как в 2)
+//2)Если файлы есть (argc > 1), открываем файл и копируем в переменную fd.
+//3)fd вставляем в функцию (назовем ее proverka_na_validnost, которая считывает данные файла и проверяет на валидность, а именно:
+//*в первой строке есть число и три несовпадающих символа, а в конце \n
+//**все строки файла заканчиваются на \n
+//***нет никаких символов кроме указанных в первой строке (не считая числа)
+//****все строки кроме первой равной длинны.
+//Если проверка прошла успешно, отправляем fd как аргумент в функцию считывания и перевода символов в массив (назовем ее sozdanie_massiva)
+//Если нет, exit (EXIT_FAILURE) (в шапке указываем функцию exit, в atexit вставляем функцию write которая выдает "Map error!")
+//
+//4)Через sozdanie_massiva считываем файл посимвольно, начиная со второй строки записываем каждый символ в массив BUFER_MASSIV где
+//BUFER_MASSIV[kolvo_strok][kolvo_stolb] (количество строк уже известно из первой строки файла, кол-во столбцов мы узнаем из п.3 когда 
+//программа перебирает посимвольно чтобы проверить строки на длину)
+//
+//5)Передаем BUFER_MASSIV в функцию вычисления максимального квадрата (назовем ее Vychislenie_kvadrata). Тут мы создаем массив на [i+1][j+1]
+//размера и вписываем в него нужные значения из алгоритма решения, затем вписываем искомый квадрат в BUFER_MASSIV. Передаем его функции,
+//которая запишет значения из BUFER_MASSIV в файл (пусть будет Zapis_kvadrata).
+//
+//6)В Zapis_kvadrata записываем квадрат в файл через open, цикл и write. По завершению, ставим exit (EXIT_SUCCESS)
+//
+//7)Делаем итерацию в main пока файлы не закончатся.
+//
+//
+//
+//
