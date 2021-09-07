@@ -6,9 +6,9 @@
 #include <sys/types.h> // для open
 #include <unistd.h>// для write/read
 #include <stdlib.h>// для exit
-#define DLINNA_1i_STROKI 5
-#define ISTINNO 1
-#define LOZNO 0
+#define DLINNA_1i_STROKI 5//в первой строчке файла всегда 5 байтов - 1 цифра, 3 буквы и \n.
+#define ISTINNO 1//Истинно = 1
+#define LOZNO 0//Ложно = 0
 
 
 int main(int argc, char *argv)
