@@ -2,10 +2,14 @@
 //Сначала давай определим порядок действий и способ выполнения задачи
 //
 //1)Проверяем, если ли файл. Если файла нет, читаем ввод с клавиатуры, создаем файл для решения и вносим данные туда. далее как в 2)
-//
+//тут будет шапка
 #include <sys/types.h> // для open
 #include <unistd.h>// для write/read
 #include <stdlib.h>// для exit
+#define DLINNA_1i_STROKI 5
+#define ISTINNO 1
+#define LOZNO 0
+
 
 int main(int argc, char *argv)
 {
@@ -31,6 +35,12 @@ int main(int argc, char *argv)
 //**все строки файла заканчиваются на \n
 //***нет никаких символов кроме указанных в первой строке (не считая числа)
 //****все строки кроме первой равной длинны.
+void  ft_proverka_na_validnost(int fd, )
+{
+  char *pervaya_stroka;
+  
+  pervaya_stroka = 0
+  
 //Если проверка прошла успешно, отправляем fd как аргумент в функцию считывания и перевода символов в массив (назовем ее sozdanie_massiva)
 //Если нет, exit (EXIT_FAILURE) (в шапке указываем функцию exit, в atexit вставляем функцию write которая выдает "Map error!")
 //
