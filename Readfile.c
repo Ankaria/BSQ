@@ -2,6 +2,29 @@
 //Сначала давай определим порядок действий и способ выполнения задачи
 //
 //1)Проверяем, если ли файл. Если файла нет, читаем ввод с клавиатуры, создаем файл для решения и вносим данные туда. далее как в 2)
+//
+#include <sys/types.h> // для open
+#include <unistd.h>// для write/read
+#include <stdlib.h>// для exit
+
+int main(int argc, char *argv)
+{
+  char *buffer_text;
+  
+  *buffer_text = 0
+  if (argc == 1)
+  {
+    int fd;
+    char c;
+    
+    c = 0
+    fd = open (file, O_CREAT, S_IRWXU, S_IRWXO);
+    while (stdin)
+    {
+      read (c, buffer_text, 1);
+      write (fd, &c, 1);
+      
+    
 //2)Если файлы есть (argc > 1), открываем файл и копируем в переменную fd.
 //3)fd вставляем в функцию (назовем ее proverka_na_validnost, которая считывает данные файла и проверяет на валидность, а именно:
 //*в первой строке есть число и три несовпадающих символа, а в конце \n
