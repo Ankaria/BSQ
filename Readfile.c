@@ -3,6 +3,7 @@
 //
 //1)Проверяем, если ли файл. Если файла нет, читаем ввод с клавиатуры, создаем файл для решения и вносим данные туда. далее как в 2)
 //тут будет шапка
+
 #include <sys/types.h> // для open
 #include <unistd.h>// для write/read
 #include <sys/stat.h> // для open
@@ -14,36 +15,53 @@
 #typedef char PUSTO//Переменная с символом "пусто"
 #typedef char POLNO//Переменная с символом "полно"
 #typedef char PREP//Переменная с символом "препятствие"
+char **buffer_massiv;
+int **massive_s_vichisleniami;
 
-/*int main(int argc, char *argv)
+#define buffer_massive buf
+#define massive_s_vichisleniami bufv
+int kolvo_stolb;
+int kolvo_strok;
+
+#define kolvo_strok nby
+#define kolvo_stolb nbx
+
+int main(int argc, char *argv)
 {
   char *buffer_text;
   
   *buffer_text = 0
   if (argc == 1)
   {
-    int fd;
     char c;
-    
-    c = 0
-    fd = open (file, O_CREAT, S_IRWXU, S_IRWXO);
-    while (stdin)
-    {
-      read (c, buffer_text, 1);
-      write (fd, &c, 1);*/
+    while//пока что
+      
+    read (1, buffer_text, 1);
+    write (, &c, 1);
       // это пока не закончено
-    
+
 //2)Если файлы есть (argc > 1), открываем файл и копируем в переменную fd.
 //3)fd вставляем в функцию (назовем ее proverka_na_validnost, которая считывает данные файла и проверяет на валидность, а именно:
 //*в первой строке есть число и три несовпадающих символа, а в конце \n
 //**все строки файла заканчиваются на \n
 //***нет никаких символов кроме указанных в первой строке (не считая числа)
 //****все строки кроме первой равной длинны.
-void  ft_proverka_na_validnost(int fd, )
+
+char **sozdanie_massiva(int fd, int kolvo_strok, int kolvo_stolb)
+{
+  **buffer_massive = (char **) malloc ((kolvo_strok + 1) * (kolvo_stolb + 1) * sizeof(char **);
+  if (**buffer_massive = NULL)//Проверяем, получилось ли выделить достаточно памяти
+    return;
+  else
+    
+void  ft_proverka_na_validnost(int fd)
 {
   char *pervaya_stroka;
+  char *stroka_zadania;
   
-  pervaya_stroka = 0
+  pervaya_stroka = 0;
+  stroka_zadania = 0;
+  
   
 //Если проверка прошла успешно, отправляем fd как аргумент в функцию считывания и перевода символов в массив (назовем ее sozdanie_massiva)
 //Если нет, exit (EXIT_FAILURE) (в шапке указываем функцию exit, в atexit вставляем функцию write которая выдает "Map error!")
@@ -60,19 +78,18 @@ void  ft_proverka_na_validnost(int fd, )
 
 char **vychislenie_kvadrata(char **buffer_massiv)
 {
-    int **massive_s_vichisleniami;
+
     int i;
     int j;
-    int kolvo_strok;
-    int kolvo_stolb;
+    //buffer_massiv[kolvo_strok][kolvo_stolb]
     
     i = 0;
     j = 0;
     massive_s_vichisleniami = 0;
     massive_s_vichisleniami = (char **) malloc (sizeof (buffer_massiv));
-    while (i <= kolvo_strok;
+    while (i <= kolvo_strok);
            {
-      while (j <= kolvo_stolb;
+      while (j <= kolvo_stolb);
              {
                if (buffer_massiv[i][j] == PUSTO)
                {
@@ -100,6 +117,7 @@ char **vychislenie_kvadrata(char **buffer_massiv)
 }
 
 //6)В Zapis_kvadrata записываем квадрат в файл через open, цикл и write. По завершению, ставим exit (EXIT_SUCCESS)
+
 //
 //7)Делаем итерацию в main пока файлы не закончатся.
 //
