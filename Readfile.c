@@ -9,6 +9,9 @@
 #define DLINNA_1i_STROKI 5//в первой строчке файла всегда 5 байтов - 1 цифра, 3 буквы и \n.
 #define ISTINNO 1//Истинно = 1
 #define LOZNO 0//Ложно = 0
+#typedef char PUSTO
+#typedef char POLNO
+#typedef char PREP
 
 
 int main(int argc, char *argv)
@@ -51,11 +54,56 @@ void  ft_proverka_na_validnost(int fd, )
 //5)Передаем buffer_massiv в функцию вычисления максимального квадрата (назовем ее Vychislenie_kvadrata). Тут мы создаем массив на [i+1][j+1]
 //размера и вписываем в него нужные значения из алгоритма решения, затем вписываем искомый квадрат в buffer_massiv. Передаем его функции,
 //которая запишет значения из buffer_massiv в файл (пусть будет Zapis_kvadrata).
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#typedef char PUSTO
+#typedef char POLNO
+#typedef char PREP
+
 char **vychislenie_kvadrata(char **buffer_massiv)
-  {
-    char **massive_s_vichisleniami;
-    massive_s_vichisleniami = (char **) malloc (sizeof (buffer_massiv) * sizeof (char**)
-//
+{
+        int **massive_s_vichisleniami;
+        int i;
+        int j;
+
+        i = 0;
+        j = 0;
+        massive_s_vichisleniami = 0;
+        massive_s_vichisleniami = (char **) malloc (sizeof (buffer_massiv));
+        while (i <= kolvo_strok)
+        {
+                while (j <= kolvo_stolb)
+                {
+                        if (buffer_massiv[i][j] == PUSTO)
+                        {
+                                if      (i == 0 || j == 0)
+                                {
+                                        **massive_s_vichisleniami = 0;
+                                }
+                                else
+                                {
+                                        **massive_s_vichisleniami = 1 + \
+                                          min_of(massive_s_vichisleniami[i--][j--], massive_s_vichisleniami[i][j--], massive_s_vichisleniami[i--][j]);
+                                }
+                                massive_s_vichisleniami++;
+                                j++;
+                        }
+                        else
+                        {
+                                **massive_s_vichisleniami = 0;
+                                massive_s_vichisleniami++;
+                                j++;
+                        }
+                }
+                i++;
+        }
+}
+
 //6)В Zapis_kvadrata записываем квадрат в файл через open, цикл и write. По завершению, ставим exit (EXIT_SUCCESS)
 //
 //7)Делаем итерацию в main пока файлы не закончатся.
