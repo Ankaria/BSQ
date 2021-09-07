@@ -5,16 +5,17 @@
 //тут будет шапка
 #include <sys/types.h> // для open
 #include <unistd.h>// для write/read
-#include <stdlib.h>// для exit
+#include <sys/stat.h> // для open
+#include <fcntl.h> // для open
+#include <stdlib.h>/ для exit и malloc
 #define DLINNA_1i_STROKI 5//в первой строчке файла всегда 5 байтов - 1 цифра, 3 буквы и \n.
 #define ISTINNO 1//Истинно = 1
 #define LOZNO 0//Ложно = 0
-#typedef char PUSTO
-#typedef char POLNO
-#typedef char PREP
+#typedef char PUSTO//Переменная с символом "пусто"
+#typedef char POLNO//Переменная с символом "полно"
+#typedef char PREP//Переменная с символом "препятствие"
 
-
-int main(int argc, char *argv)
+/*int main(int argc, char *argv)
 {
   char *buffer_text;
   
@@ -29,8 +30,8 @@ int main(int argc, char *argv)
     while (stdin)
     {
       read (c, buffer_text, 1);
-      write (fd, &c, 1);
-      
+      write (fd, &c, 1);*/
+      // это пока не закончено
     
 //2)Если файлы есть (argc > 1), открываем файл и копируем в переменную fd.
 //3)fd вставляем в функцию (назовем ее proverka_na_validnost, которая считывает данные файла и проверяет на валидность, а именно:
@@ -55,53 +56,47 @@ void  ft_proverka_na_validnost(int fd, )
 //размера и вписываем в него нужные значения из алгоритма решения, затем вписываем искомый квадрат в buffer_massiv. Передаем его функции,
 //которая запишет значения из buffer_massiv в файл (пусть будет Zapis_kvadrata).
 
-#include <sys/types.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#typedef char PUSTO
-#typedef char POLNO
-#typedef char PREP
+
 
 char **vychislenie_kvadrata(char **buffer_massiv)
 {
-        int **massive_s_vichisleniami;
-        int i;
-        int j;
-
-        i = 0;
-        j = 0;
-        massive_s_vichisleniami = 0;
-        massive_s_vichisleniami = (char **) malloc (sizeof (buffer_massiv));
-        while (i <= kolvo_strok)
-        {
-                while (j <= kolvo_stolb)
-                {
-                        if (buffer_massiv[i][j] == PUSTO)
-                        {
-                                if      (i == 0 || j == 0)
-                                {
-                                        **massive_s_vichisleniami = 0;
-                                }
-                                else
-                                {
-                                        **massive_s_vichisleniami = 1 + \
-                                          min_of(massive_s_vichisleniami[i--][j--], massive_s_vichisleniami[i][j--], massive_s_vichisleniami[i--][j]);
-                                }
-                                massive_s_vichisleniami++;
-                                j++;
-                        }
-                        else
-                        {
-                                **massive_s_vichisleniami = 0;
-                                massive_s_vichisleniami++;
-                                j++;
-                        }
-                }
-                i++;
-        }
+    int **massive_s_vichisleniami;
+    int i;
+    int j;
+    int kolvo_strok;
+    int kolvo_stolb;
+    
+    i = 0;
+    j = 0;
+    massive_s_vichisleniami = 0;
+    massive_s_vichisleniami = (char **) malloc (sizeof (buffer_massiv));
+    while (i <= kolvo_strok;
+           {
+      while (j <= kolvo_stolb;
+             {
+               if (buffer_massiv[i][j] == PUSTO)
+               {
+                 if      (i == 0 || j == 0)
+                 {
+                   **massive_s_vichisleniami = 0;
+                 }
+                 else
+                 {
+                   **massive_s_vichisleniami = 1 + \
+                   min_of(massive_s_vichisleniami[i--][j--], massive_s_vichisleniami[i][j--], massive_s_vichisleniami[i--][j]);
+                 }
+                 massive_s_vichisleniami++;
+                 j++;
+               }
+               else
+               {
+                 **massive_s_vichisleniami = 0;
+                 massive_s_vichisleniami++;
+                 j++;
+               }
+             }
+             i++;
+           }
 }
 
 //6)В Zapis_kvadrata записываем квадрат в файл через open, цикл и write. По завершению, ставим exit (EXIT_SUCCESS)
