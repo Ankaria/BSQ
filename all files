@@ -4,35 +4,76 @@
 #include <sys/stat.h> // для open
 #include <fcntl.h> // для open
 #include <stdlib.h>/ для exit и malloc
-#define DLINNA_1i_STROKI 5//в первой строчке файла всегда 5 байтов - 1 цифра, 3 буквы и \n.
+#define DLINNA_1I_STROKI 5//в первой строчке файла всегда 5 байтов - 1 цифра, 3 буквы и \n.
 #define ISTINNO 1//Истинно = 1
 #define LOZNO 0//Ложно = 0
-#typedef size_t RAZMER_PAM
-#typedef char PUSTO//Переменная с символом "пусто"
-#typedef char POLNO//Переменная с символом "полно"
-#typedef char PREP//Переменная с символом "препятствие"
+#typedef  unsigned int  RAZMER_PAM
+#typedef  char  PUSTO//Переменная с символом "пусто"
+#typedef  char  POLNO//Переменная с символом "полно"
+#typedef  char  PREP//Переменная с символом "препятствие"
+#typedef unsigned int max_sq_size
+char *buffer_text_file;
 char **buffer_massiv;
-int **massive_s_vichisleniami;
+int **g_massive_s_vichisleniami;
 
-#define buffer_massive buf
-#define massive_s_vichisleniami bufv
+#define buffer_massive g_buf
+#define massive_s_vichisleniami g_bufv
+#define buffer_text_file g_buft
+#define max_sq_size msq
+
 int kolvo_stolb;
 int kolvo_strok;
 
-#define kolvo_strok nby
-#define kolvo_stolb nbx
+#define kolvo_strok g_nby
+#define kolvo_stolb g_nbx
 #define RAZMER_PAM 2000000
+
+//assistant functions
+void ft_putchar(char c)
+{
+  write (1, &c, 1);
+}
+
+void ft_putnbr(int nb)
+{
+  write (1, &nb, 1);
+}
+
+int ft_strlen(char *str)
+{
+  int i;
+  
+  i = 0;
+  while (str[i] != '\0')
+    i++;
+  return (i);
+}
+
+char *ft_strcpy(char *src, char *dst)
+{
+  int i;
+  
+  i = 0;
+  while (src[i] != '\0')
+  {
+    dst[i] = src[i];
+    i++;
+  }
+  dst[i] = '\0';
+  return (dst);
+}
+
 
 //main.c
 int main(int argc, char *argv)
 {
-  char *buffer_text;
+  char *buff;
   int fd;
   
   int fd = 0;
   if (argc == 1)
   {
-    buffer_text = chtenie(0, RAZMER_PAM);  
+    buff = chtenie(0);  
   }
   else
   {  
@@ -44,13 +85,51 @@ int main(int argc, char *argv)
       if (fd == 0);
         exit (EXIT_FAILURE);
       else
-      buffer_text = chtenie(fd, RAZMER_PAM;
+      buffer_text = chtenie(fd);
       argv++;
     }
   }
-  
-  //chtenie
-char  *chtenie(int fd, size_t pam)
+void  zapis_v_file(int fd)
 {
+
+}
+
+
+void  zapis_v_consol(int fd)
+{
+}
+
+
+char **zapis_sq_v_buffer(char **buffer_massiv, ptr)
+{
+return (buffer_massiv)
+}
+
+
+char *vychislenie_kvadrata(char **buffer_massiv)
+{
+//assign max_sq_size
+return (ptr)
+}
+
+char **sozdanie_massiva(char* buffer_text_file, int kolvo_strok, int kolvo_stolb)
+{
+return (buffer_massiv)
+}
+
+int ft_proverka_na_validnost(char* buffer_text_file)
+{
+//need to assign kolvo_strok and kolvo_stolb
+return (ISTINNO/LOZNO);
+}
+
+char  *chtenie(int fd)
+{
+  int i;
   
+  i = 0;
+  while (
+  read (fd, &buffer_text_file, 1)
   
+  return (buffer_text_file);
+}
