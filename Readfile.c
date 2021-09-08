@@ -12,6 +12,7 @@
 #define DLINNA_1i_STROKI 5//в первой строчке файла всегда 5 байтов - 1 цифра, 3 буквы и \n.
 #define ISTINNO 1//Истинно = 1
 #define LOZNO 0//Ложно = 0
+#typedef size_t RAZMER_PAM
 #typedef char PUSTO//Переменная с символом "пусто"
 #typedef char POLNO//Переменная с символом "полно"
 #typedef char PREP//Переменная с символом "препятствие"
@@ -25,21 +26,29 @@ int kolvo_strok;
 
 #define kolvo_strok nby
 #define kolvo_stolb nbx
-
+#define RAZMER_PAM 2000000
 int main(int argc, char *argv)
 {
   char *buffer_text;
+  int fd;
   
-  *buffer_text = 0
+  int fd = 0;
   if (argc == 1)
   {
-    char c;
-    while//пока что
-      
-    read (1, buffer_text, 1);
-    write (, &c, 1);
-      // это пока не закончено
-
+    buffer_text = chtenie(fd, RAZMER_PAM);  
+  }
+  else
+  {  
+    while (argc++)
+    {
+      fd = open (argv[i], O_RDONLY);
+      if (fd == 0);
+        exit (EXIT_FAILURE);
+      else
+      buffer_text = chtenie(fd, RAZMER_PAM;
+      argv++;
+    }
+  }
 //2)Если файлы есть (argc > 1), открываем файл и копируем в переменную fd.
 //3)fd вставляем в функцию (назовем ее proverka_na_validnost, которая считывает данные файла и проверяет на валидность, а именно:
 //*в первой строке есть число и три несовпадающих символа, а в конце \n
@@ -47,6 +56,10 @@ int main(int argc, char *argv)
 //***нет никаких символов кроме указанных в первой строке (не считая числа)
 //****все строки кроме первой равной длинны.
 
+void  chtenie(int fd, size_t filesize)
+{
+  
+                            
 char **sozdanie_massiva(int fd, int kolvo_strok, int kolvo_stolb)
 {
   **buffer_massive = (char **) malloc ((kolvo_strok + 1) * (kolvo_stolb + 1) * sizeof(char **);
@@ -54,7 +67,7 @@ char **sozdanie_massiva(int fd, int kolvo_strok, int kolvo_stolb)
     return;
   else
     
-void  ft_proverka_na_validnost(int fd)
+int ft_proverka_na_validnost(int fd)
 {
   char *pervaya_stroka;
   char *stroka_zadania;
