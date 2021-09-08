@@ -4,7 +4,7 @@
 //1)Проверяем, если ли файл. Если файла нет, читаем ввод с клавиатуры, создаем файл для решения и вносим данные туда. далее как в 2)
 //тут будет шапка
 
-#include <sys/types.h> // для open
+#include <sys/types.h> // для size_t
 #include <unistd.h>// для write/read
 #include <sys/stat.h> // для open
 #include <fcntl.h> // для open
@@ -35,7 +35,7 @@ int main(int argc, char *argv)
   int fd = 0;
   if (argc == 1)
   {
-    buffer_text = chtenie(fd, RAZMER_PAM);  
+    buffer_text = chtenie(fd);  
   }
   else
   {  
@@ -45,7 +45,7 @@ int main(int argc, char *argv)
       if (fd == 0);
         exit (EXIT_FAILURE);
       else
-      buffer_text = chtenie(fd, RAZMER_PAM;
+      buffer_text = chtenie(fd);
       argv++;
     }
   }
@@ -56,7 +56,7 @@ int main(int argc, char *argv)
 //***нет никаких символов кроме указанных в первой строке (не считая числа)
 //****все строки кроме первой равной длинны.
 
-void  chtenie(int fd, size_t filesize)
+char  *chtenie(int fd, size_t filesize)
 {
   
                             
