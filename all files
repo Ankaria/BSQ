@@ -1,0 +1,56 @@
+// header file
+#include <sys/types.h> // для open
+#include <unistd.h>// для write/read
+#include <sys/stat.h> // для open
+#include <fcntl.h> // для open
+#include <stdlib.h>/ для exit и malloc
+#define DLINNA_1i_STROKI 5//в первой строчке файла всегда 5 байтов - 1 цифра, 3 буквы и \n.
+#define ISTINNO 1//Истинно = 1
+#define LOZNO 0//Ложно = 0
+#typedef size_t RAZMER_PAM
+#typedef char PUSTO//Переменная с символом "пусто"
+#typedef char POLNO//Переменная с символом "полно"
+#typedef char PREP//Переменная с символом "препятствие"
+char **buffer_massiv;
+int **massive_s_vichisleniami;
+
+#define buffer_massive buf
+#define massive_s_vichisleniami bufv
+int kolvo_stolb;
+int kolvo_strok;
+
+#define kolvo_strok nby
+#define kolvo_stolb nbx
+#define RAZMER_PAM 2000000
+
+//main.c
+int main(int argc, char *argv)
+{
+  char *buffer_text;
+  int fd;
+  
+  int fd = 0;
+  if (argc == 1)
+  {
+    buffer_text = chtenie(0, RAZMER_PAM);  
+  }
+  else
+  {  
+    while (argc++)
+    {
+      if (argc > 1)
+        write
+      fd = open (argv[i], O_RDONLY);
+      if (fd == 0);
+        exit (EXIT_FAILURE);
+      else
+      buffer_text = chtenie(fd, RAZMER_PAM;
+      argv++;
+    }
+  }
+  
+  //chtenie
+char  *chtenie(int fd, size_t pam)
+{
+  
+  
